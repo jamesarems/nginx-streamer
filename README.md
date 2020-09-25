@@ -2,7 +2,7 @@
 
 ## Usage
 
-`docker run -itd --name stream-server -p 8080:8080 -p 1935:1935 -v /data:/data nginx-streamer:latest`
+`docker run -itd --name stream-server -p 8080:8080 -p 1935:1935 -v /data:/data jamesarems:nginx-streamer:latest`
 
 * 8080/tcp - For stream access
 * 1935  - RTMP input
