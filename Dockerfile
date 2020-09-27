@@ -1,7 +1,7 @@
-## Nginx Strem server container
+## Nginx Stream server container
 # Clone official centos docker from dockerhub
 FROM centos:8
-MAINTAINER jamesarems@hotmail.com
+MAINTAINER James PS <jamesarems@hotmail.com>
 VOLUME ["/data"]
 # Copy script to container
 COPY ./run.sh /opt/run.sh
