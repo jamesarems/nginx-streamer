@@ -11,13 +11,14 @@ RUN chmod +x /opt/run.sh
 RUN useradd nginx
 # Install dependencies
 RUN dnf install curl gcc gcc-c++ make pcre-devel openssl-devel git -y
-# Clone & Download Nginx, RTMP module and VOD module
+# Clone & Download Nginx, RTMP, VOD, Purge modules
 RUN git clone https://github.com/arut/nginx-rtmp-module.git
 RUN git clone -b 1.27 https://github.com/kaltura/nginx-vod-module.git
+RUN git clone https://github.com/FRiCKLE/ngx_cache_purge.git
 RUN curl http://nginx.org/download/nginx-1.19.1.tar.gz -o nginx-1.19.1.tar.gz
 # Compile and install nginx
 RUN tar -xf nginx-1.19.1.tar.gz
-RUN pushd nginx-1.19.1 ; ./configure --add-module=../nginx-rtmp-module --add-module=../nginx-vod-module --with-file-aio --with-http_ssl_module --with-cc-opt="-Wimplicit-fallthrough=0" ; make ; make install ; popd
+RUN pushd nginx-1.19.1 ; ./configure --add-module=../nginx-rtmp-module --add-module=../nginx-vod-module --add-module=../ngx_cache_purge --with-file-aio --with-http_ssl_module --with-cc-opt="-Wimplicit-fallthrough=0" ; make ; make install ; popd
 #Install FFMPEG (Optional)
 # Install FFMPEG
 RUN dnf install epel-release dnf-utils -y
